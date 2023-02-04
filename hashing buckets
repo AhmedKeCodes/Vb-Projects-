@@ -1,0 +1,63 @@
+Module Module1
+    Dim StNameudArr(6) As Integer
+
+    Sub Main()
+        Dim StName, x As Integer
+        StName = 79776582
+        Call InsertHash(StName)
+        StName = 83726572
+        Call InsertHash(StName)
+        StName = 79776583
+        Call InsertHash(StName)
+        StName = 79776588
+        Call InsertHash(StName)
+        StName = 79776589
+        Call InsertHash(StName)
+        Console.Write("Enter Record Key :") : StName = Console.ReadLine
+        Call InsertHash(StName)
+        Next
+        Console.Write("Enter Search Record Key :") : StName = Console.ReadLine
+        x = SearchHash(StName)
+        If x = 0 Then
+            Console.WriteLine("Not Found")
+        Else
+            Console.WriteLine("Found")
+        End If
+        Console.ReadKey()
+        For x = 0 To 6
+            Console.WriteLine(StNameudArr(x))
+        Next
+        Console.ReadKey()
+    End Sub
+
+    Sub InsertHash(ByVal name As Integer)
+        Dim hashKey As Integer
+        hashKey = Hash(name, 6)
+        While StNameudArr(hashKey) <> 0
+            hashKey = hashKey + 1
+            If hashKey > 6 Then hashKey = 0
+        End While
+        StNameudArr(hashKey) = name
+    End Sub
+
+    Function SearchHash(ByVal name As Integer) As Integer
+        Dim hashKey, totSearches As Integer
+        hashKey = Hash(name, 6)
+        While StNameudArr(hashKey) <> name
+            totSearches = totSearches + 1
+            hashKey = hashKey + 1
+            If hashKey > 6 Then hashKey = 0
+            If totSearches > 6 Then
+                Return 0
+                Exit Function
+            End If
+        End While
+        Return name
+    End Function
+
+    Function Hash(ByVal KeyVal As Integer, ByVal MaxPos As Integer) As Integer
+        Dim indexPos As Integer
+        indexPos = KeyVal Mod (MaxPos + 1)
+        Return indexPos
+    End Function
+End Module
