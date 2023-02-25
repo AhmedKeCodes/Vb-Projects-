@@ -1,0 +1,39 @@
+Module Module1
+    Structure Node
+        Dim Data As Integer
+        Dim NextNode As Integer
+    End Structure
+    Sub Main()
+        Dim LinkedList(9) As Node
+        Dim startPointer As Integer
+        startPointer = 0
+        LinkedList(0).Data = 1
+        LinkedList(0).NextNode = 1
+        LinkedList(1).Data = 5
+        LinkedList(1).NextNode = 4
+        LinkedList(2).Data = 6
+        LinkedList(2).NextNode = 7
+        LinkedList(3).Data = 7
+        LinkedList(3).NextNode = -1
+        LinkedList(4).Data = 2
+        LinkedList(4).NextNode = 2
+        LinkedList(5).Data = 0
+        LinkedList(5).NextNode = 6
+        LinkedList(6).Data = 0
+        LinkedList(6).NextNode = 8
+        LinkedList(7).Data = 56
+        LinkedList(7).NextNode = 3
+        LinkedList(8).Data = 0
+        LinkedList(8).NextNode = 9
+        LinkedList(9).Data = 0
+        LinkedList(9).NextNode = -1
+        outputNodes(LinkedList, startPointer)
+        Console.ReadKey()
+    End Sub
+    Sub outputNodes(ByVal LinkedList As Array, ByVal currentPointer As Integer)
+        While (currentPointer <> -1)
+            Console.WriteLine(LinkedList(currentPointer).data)
+            currentPointer = (LinkedList(currentPointer).nextnode)
+        End While
+    End Sub
+End Module
